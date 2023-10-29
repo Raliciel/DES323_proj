@@ -44,11 +44,19 @@ code {
   font-size: 0.75rem;
 }
 
+.header {
+  background: #43888F;
+}
+
+.footer {
+  background: #43888F;
+}
+
 .footer h1 {
+  color: white;
   width: 1440px;
   height: 105px;
   flex-shrink: 0;
-  background: #43888F;
 }
 
 .footer-card {
