@@ -10,3 +10,26 @@
     border-radius: 4%;
     padding: 2%;
 }
+
+.process-num{
+    width: 4em;
+    height: 4em;
+    background-color: #FEEFED;
+    border: 4px solid #FA9EA9;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 1em;
+    font-style: bold;
+}
+
+.web-topic {
+    display: flex;
+    flex-direction: row;
+    padding: 1em
+}
+
+.web-topic label {
+    font-size: 2em;
+    text-align: center;
+    margin-left: 2em;
+}
