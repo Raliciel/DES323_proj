@@ -128,7 +128,7 @@ nav {
 }
 
 #grad {
-  background-image: linear-gradient(to right, #FA9EA9 ,rgba(255,0,0,0));
+  background-image: linear-gradient(to right, #FA9EA9 ,#FAEEC8);
   color:black;
   border:0;
   padding-right: var(--bs-gutter-x,.75rem);
@@ -138,6 +138,12 @@ nav {
   background-color: #43888F;
   color: #FDF7E7;
   border: 0;
-  border-radius: 4%;
+  border-radius: 12%;
+
+  margin: 2%;
   padding: 2%;
+}
+
+#cards{
+  padding: 4%;
 }

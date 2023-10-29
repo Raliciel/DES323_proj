@@ -1,15 +1,3 @@
-#grad {
-    background-image: linear-gradient(to right, #FA9EA9 ,rgba(255,0,0,0));
-    color:black;
-    border:0;
-}
-#startButton{
-    background-color: #43888F;
-    color: #FDF7E7;
-    border: 0;
-    border-radius: 4%;
-    padding: 2%;
-}
 
 .process-num{
     width: 4em;
