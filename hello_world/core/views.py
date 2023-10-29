@@ -6,3 +6,9 @@ def index(request):
     }
     return render(request, "web/index.html", context)
 
+
+def setting(request):
+    context = {
+        "title": "Setting Example",
+    }
+    return render(request, "web/setting.html",context)
