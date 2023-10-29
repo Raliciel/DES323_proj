@@ -49,20 +49,45 @@ code {
 }
 
 .footer {
-  background: #43888F;
+  background: #D1EAEC;
+  padding: 2.5%;
 }
 
 .footer h1 {
+  background: #43888F;
   color: white;
-  width: 1440px;
-  height: 105px;
   flex-shrink: 0;
+  margin: -2.5%;
+  padding: 2.5%;
+  margin-bottom: 3%;
 }
 
 .footer-card {
-  width: 1228px;
-  height: 281.438px;
   flex-shrink: 0;
   border-radius: 25px;
   background: #FDF7E7;
+  margin-left: 0%;
+  width: 90%;
+  padding: 2.5%;
+}
+
+.footer-card label {
+  font-size: 1.5rem;
+}
+
+.viztastic-logo {
+  background-image: url("../static/Logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 30px;
+}
+@media screen and (max-width: 450px){
+  .viztastic-logo {
+    background-image: url("../static/Logo_small.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 30px;
+  }
 }
