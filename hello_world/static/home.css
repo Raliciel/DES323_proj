@@ -33,3 +33,19 @@
     text-align: center;
     margin-left: 2em;
 }
+
+.index-body{
+    margin: 0px;
+}
+
+.index-context {
+    margin: 0px;
+    padding: 1em;
+}
+.index-body .index-context:nth-child(odd){
+    background-color: #FDF7E7;
+}
+
+.index-body .index-context:nth-child(even) {
+    background-color: #FAEEC8;
+}
