@@ -91,3 +91,9 @@ code {
     height: 30px;
   }
 }
+#mainDiv{
+  background-color: #FAEEC8;
+}
+#subDiv{
+  background-color: #FDF7E7;
+}
