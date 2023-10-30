@@ -37,3 +37,74 @@
 .index-body .index-context:nth-child(even) {
     background-color: #FAEEC8;
 }
+
+
+
+#home-text{
+    font-weight: bold;
+    font-size: 128;
+}
+
+#grad {
+    background-image: linear-gradient(to right, #fa9ea9 ,#faeec87e);
+    color:black;
+    border:0;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    display: flex;
+    flex-direction: column;
+    z-index: 99;
+  }
+  #start-button{
+    background-color: #43888F;
+    color: #FDF7E7;
+    border: 0;
+    border-radius: 2%;
+    margin: 0 auto;
+    /* margin: 2%; */
+    padding: 2%;
+    font-weight: bold;
+    font-size:212%;
+  }
+
+  #start-image{
+    mask-image: linear-gradient(to right, #fa9ea9 ,#faeec87e);
+    height:50vh;
+    z-index: 1;
+    object-fit: contain;
+  }
+
+  #start-heading{
+    font-size:512%;
+    font-weight: bold;
+    text-wrap: wrap;
+    width:70vw;
+    position:absolute;
+  }
+  #cards{
+    padding: 2%;
+    border:0;
+    border-radius: 2%;
+    background-color: #43888F;
+    display: flex;
+    flex-direction: column;
+    margin:2%;
+    height:auto;
+    width: 22%;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+  }
+  #card-img{
+    width: 100%;
+    margin: 2%;
+    padding: 2%;
+  }
+  
+  #card-list{
+    display: flex;
+    justify-content: space-around;
+  }
+  #cards{
+    padding: 4%;
+  }
