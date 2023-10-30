@@ -42,18 +42,38 @@
 
 #home-text{
     font-weight: bold;
-    font-size: 256%;
+    font-size: 384%;
+    text-align: center;
 }
 
 #news-text{
     font-weight: bold;
-    font-size: 256%;
+    font-size: 312%;
     z-index: 1;
     position:absolute;
+    padding:8%
+}
+
+#changelog-button{
+  height:50vh;
+  width:95vw;
+  background-image: url("../static/news.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border:0;
+}
+
+#events-button{
+  height:50vh;
+  width:95vw;
+  background-image: url("../static/events.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border:0;
 }
 
 #grad {
-    background-image: linear-gradient(to right, #fa9ea9 ,#faeec87e);
+    background-image: linear-gradient(to right, #fa9ea9 ,#faeec838,#faeec800);
     color:black;
     border:0;
     padding-right: var(--bs-gutter-x,.75rem);
@@ -82,16 +102,19 @@
 
   #start-image{
     height:50vh;
-    background-image: url("../static/pieChart.png");
+    background: url("../static/chart_pieStart.png");
     background-size: cover;
     background-repeat: no-repeat;
+
   }
 
   #start-image-cover {
     background-color: #fa9ea9;
-    background: linear-gradient(to right, #fa9ea9 ,#faeec87e);
+    background: linear-gradient(to right, #fa9ea9 ,#faeec800,#faeec87e);
     overflow: hidden;
     height: 100%;
+    margin:0;
+
   }
 
   #start-heading{
@@ -102,15 +125,14 @@
     position:absolute;
     z-index: 5;
   }
+
   #cards{
-    padding: 2%;
+    padding:0 0;
     border:0;
-    border-radius: 2%;
+    border-radius: 8%;
     background-color: #43888F;
-    display: flex;
     flex-direction: column;
     margin:2%;
-    height:auto;
     width: 22%;
     align-items: center;
     color:white;
@@ -118,9 +140,8 @@
   }
   #card-img{
     width: 100%;
-    margin: 2%;
-    padding: 2%;
     
+    object-fit: contain;
 }
   
   #card-list{
