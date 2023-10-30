@@ -16,16 +16,19 @@ Let's goooooooo
                     <th>NAME</th>
                     <th>DATE</th>
                     <th>TYPES OF VISUALIZATION</th>
+                    <th>Delete</th>
                 </tr>
                 <tr>
-                    <td class = "underlined">Golf Score Chart</td>
+                    <td class = "underlined" onClick="console.log('Hello World')">Golf Score Chart</td>
                     <td>January 30, 2023</td>
                     <td>Pie Chart,Histogram,Multiple Bar Chart, etc.</td>
+                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
                 </tr>
                 <tr>
-                    <td class = "underlined">Makro Quarter Analysis</td>
+                    <td class = "underlined" onClick="console.log('Hello World')">Makro Quarter Analysis</td>
                     <td>December 12, 2022</td>
                     <td>Lineplot,Barplot,Sunburst Chart,etc.</td>
+                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
                 </tr>
             </table>
         </div>
@@ -64,6 +67,13 @@ Let's goooooooo
             <div class = "input">
                 <label>Old Password</label>
                 <input class = input-container type="text" placeholder="Enter text">
+            </div>
+            <div class = "setting-notice">
+                <p>* Please note after changing your password, you must log back in</p>
+                <div class = "passChange">
+                    <button style = "background-color: #43888F;" onClick="console.log('Change Password')">Apply</button>
+                    <button style = "background-color: #ED7A88;" onClick="console.log('Clear Data')">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
