@@ -7,92 +7,66 @@ Let's goooooooo
 
 
 <body>
-    </style>
-<div>
-    <h1>My Account</h1>
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>DATE</th>
-            <th>TYPES OF VISUALIZATION</th>
-        </tr>
-        <tr>
-            <td class = underlined>Golf Score Chart</td>
-            <td>January 30, 2023</td>
-            <td>Pie Chart,Histogram,Multiple Bar Chart, etc.</td>
-        </tr>
-        <tr>
-            <td class = underlined>Makro Quarter Analysis</td>
-            <td>December 12, 2022</td>
-            <td>Lineplot,Barplot,Sunburst Chart,etc.</td>
-        </tr>
-    </table>
-</div>
-
-
-
-<div>
-    <h3>Change Your Name</h3>
-    <label>First Name</label>
-    <input class = input-container type="text" placeholder="Enter text">
-    <label>Last Name</label>
-    <input class = input-container  type="text" placeholder="Enter text">
-    <label>AccountName</label>
-    <input class = input-container  type="text" placeholder="Enter text">   
-</div>
-
-
-
-
-<div>
-    <h3>Change your Password</h3>
-    <label>New Password</label>
-    <input class = input-container type="text" placeholder="Enter text">
-    <label>Re-enter Password</label>
-    <input class = input-container  type="text" placeholder="Enter text">
-</div>
-
-
-
-
+    <div class = "index-body">
+        <div class = "index-context setting-context">
+            <h1 class = "container-fluid">Setting</h1>
+            <h2>My Account</h2>
+            <table border="1">
+                <tr>
+                    <th>NAME</th>
+                    <th>DATE</th>
+                    <th>TYPES OF VISUALIZATION</th>
+                </tr>
+                <tr>
+                    <td class = "underlined">Golf Score Chart</td>
+                    <td>January 30, 2023</td>
+                    <td>Pie Chart,Histogram,Multiple Bar Chart, etc.</td>
+                </tr>
+                <tr>
+                    <td class = "underlined">Makro Quarter Analysis</td>
+                    <td>December 12, 2022</td>
+                    <td>Lineplot,Barplot,Sunburst Chart,etc.</td>
+                </tr>
+            </table>
+        </div>
+    
+    
+    
+        <div class = "index-context setting-context">
+            <h2>Change Your Name</h2>
+            <div class = "input">
+                <label>First Name</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>
+            <div class = "input">
+                <label>Last Name</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>
+            <div class = "input">
+                <label>Account</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>   
+            <div class = "input">
+                <label>Email</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>   
+        </div>
+    
+    
+    
+    
+        <div class = "index-context setting-context">
+            <h2>Change your Password</h2>
+            <div class = "input">
+                <label>New Password</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>   
+            <div class = "input">
+                <label>Old Password</label>
+                <input class = input-container type="text" placeholder="Enter text">
+            </div>
+        </div>
+    </div>
 </body>
-
-<style>
-    .underlined {
-        text-decoration: underline;
-        color: blue; /* You can change the color to suit your design */
-        cursor: pointer; /* Change the cursor style to indicate interactivity */
-        
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        background-color: #333; /* Set the background color to black */
-    }
-
-    th, td {
-        border: 1px solid #000;
-        padding: 8px;
-        color: #fff;
-
-    }
-    .input-container {
-            display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            align-items: flex-start; /* Align items to the start of the column */
-        }
-
-    .input-container input {
-            border: none;
-            border-top: 2px solid gray;
-            background-color: transparent;
-            color: #fff;
-            padding: 4px;
-            margin: 2px 0;
-    }
-
-</style>
-
 
 {% endblock %}
