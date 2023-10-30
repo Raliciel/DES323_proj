@@ -125,6 +125,7 @@ nav {
 }
 #subDiv{
   padding: 1em;
+  text-align: center;
 }
 
 #grad {
@@ -133,17 +134,42 @@ nav {
   border:0;
   padding-right: var(--bs-gutter-x,.75rem);
   padding-left: var(--bs-gutter-x,.75rem);
+  display: inline-flex;
 }
 #startButton{
   background-color: #43888F;
   color: #FDF7E7;
   border: 0;
-  border-radius: 12%;
+  border-radius: 2%;
+  margin: 0 auto;
+  /* margin: 2%; */
+  padding: 2%;
+  font-weight: bold;
 
+}
+#cards{
+  padding: 2%;
+  border:0;
+  border-radius: 2%;
+  background-color: #43888F;
+  display: flex;
+  flex-direction: column;
+  margin:2%;
+  height:auto;
+  width: 22%;
+  align-items: center;
+  color:white;
+  font-weight: bold;
+}
+#card-img{
+  width: 100%;
   margin: 2%;
   padding: 2%;
 }
 
+#card-list{
+  display: flex;
+  justify-content: space-around;
 #cards{
   padding: 4%;
 }
