@@ -16,3 +16,48 @@ a {
   text-decoration: none;
 }
 @import url("https://fonts.googleapis.com/css?family=Inter:400");
+
+.dragfilebackground{
+  width: 656px;
+  height: 488px;
+  flex-shrink: 0;
+  background: #DEF0F2;
+}
+
+.draganddrop{
+  display: flex;
+  width: 178px;
+  height: 197px;
+  flex-direction: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-align: center;
+  
+}
+
+.font1{
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.dropimg {
+
+  width: 126px;
+  height: 168px;
+  flex-shrink: 0;
+}
+
+div#no-background {
+  background-image: none;
+}
+
+.secback{
+  width: 489px;
+  height: 488px;
+  flex-shrink: 0;
+}
