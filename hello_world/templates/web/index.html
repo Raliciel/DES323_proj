@@ -15,20 +15,20 @@ Let's goooooooo
                 <label>Upload Your Dataset</label>
                 
             </div>
-            <div class="web-topic">
+            <div class="dropbox container-fluid">
                 <div class="dragfilebackground">
-                    <div style="text-align:center" ><label class="font1">Drag and Drop your file</label></div>
-                    <div id="no-background"> <img src="{% static 'download.jpg' %}" /></div>
+                    <label class="font1">Drag and Drop your file</label>
+                    <img src="{% static 'download.jpg' %}" />
                 </div>
                 <div class="dragbg2">
-                    <div style="text-align:center" ><label class="font1">Search from devices</label></div>
-                    <div class="overlap-3">
-                        <button>Upload</button>
-                    </div>
+                    <label class="font1">Search from devices</label>
+                    <button>Upload</button>
                 </div>
             </div>
-            <img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />
-            <p class="text-wrapper-12">You do not have a file yet</p>
+            <div class = "error">
+                <img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />
+                <p>You do not have a file yet</p>
+            </div>
         </div>
     
     
@@ -39,60 +39,33 @@ Let's goooooooo
                 </div>
                 <label>Choose your visualizing method</label>
             </div>
-            
-            <div class="web-topic">
-                <div class="desktop-homepage">
-                    <div class="overlap-group-4">
-                        <div class="rectangle-3"></div>
-                        <img class="bar-chart" src="{% static 'bar-chart-01.png' %}" />
-                        <div class="text-wrapper-7">Histogram</div> 
-                       
-                    </div>  
-                </div>
-                
-            </div>
-            <div class="web-topic">
-                <div class="desktop-homepage">
-                    <div class="overlap-group-4">
-                        <div class="rectangle-3"></div>
-                        <img class="bar-chart" src="{% static 'bar-chart-02.png' %}" />
-                        <div class="text-wrapper-7">Horizontal Histogram</div>
-                    </div>  
+            <div class="choices">
+                <div class="subchoice">
+                    <img class="bar-chart" src="{% static 'bar-chart-01.png' %}" />
+                    <label>Histogram</label> 
+                    
+                </div>  
+                <div class="subchoice">
+                    <img class="bar-chart" src="{% static 'bar-chart-02.png' %}" />
+                    <label>Horizontal Histogram</label>
+                </div>  
+                <div class="subchoice">
+                    <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
+                    <label>Pie Chart</label>
+                </div>  
+                <div class="subchoice">
+                    <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
+                    <label>Line Chart</label>
+                </div>  
+                <div class="subchoice">
+                    <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
+                    <label>Dot Chart</label>
                 </div>  
             </div>
             <div class="web-topic">
                 <div class="desktop-homepage">
-                    <div class="overlap-group-4">
-                        <div class="rectangle-3"></div>
-                        <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
-                        <div class="text-wrapper-7">Pie Chart</div>
-                    </div>  
-                </div> 
-            </div>
-            <div class="web-topic">
-                <div class="desktop-homepage">
-                    <div class="overlap-group-4">
-                        <div class="rectangle-3"></div>
-                        <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
-                        <div class="text-wrapper-7">Line Chart</div>
-                    </div>  
-                </div> 
-            </div>
-            <div class="web-topic">
-                <div class="desktop-homepage">
-                    <div class="overlap-group-4">
-                        <div class="rectangle-3"></div>
-                        <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
-                        <div class="text-wrapper-7">Dot Chart</div>
-                        
-                    </div>  
-                    
-                </div> 
-            </div>
-            <div class="web-topic">
-                <div class="desktop-homepage">
-                    <div class="overlap-5">
-                        <p class="text-wrapper-9">Choose your method before proceed</p>
+                    <div class="fillfield">
+                        <h1>Choose your method before proceed</h1>
                     </div>
                 </div>
             </div>
@@ -103,17 +76,13 @@ Let's goooooooo
                 </div>
                 <label>Statistic Summary</label>
             </div>
-            <div class="web-topic">
-            <div class="desktop-homepage">
-                <div class="overlap-2">
-                    <p class="p">You do not have a file yet</p>
+            <div class="result">
+                <div class="fillfield">
+                    <h1>You do not have a file yet</h1>
                 </div>
+                <button>Download your model</button>
             </div>
-        </div>
-            <div class="group">
-                <div class="overlap-3">
-                    <button>Download your model</button>
-                </div>
+                    
             </div>
         </div>
     </div>
