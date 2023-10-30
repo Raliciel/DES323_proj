@@ -42,7 +42,14 @@
 
 #home-text{
     font-weight: bold;
-    font-size: 128;
+    font-size: 256%;
+}
+
+#news-text{
+    font-weight: bold;
+    font-size: 256%;
+    z-index: 1;
+    position:absolute;
 }
 
 #grad {
@@ -53,8 +60,14 @@
     padding-left: var(--bs-gutter-x,.75rem);
     display: flex;
     flex-direction: column;
-    z-index: 99;
+    z-index: 2;
   }
+#grad-img{
+    object-fit: cover;
+    width: 100vw;
+    z-index: 0;
+}
+
   #start-button{
     background-color: #43888F;
     color: #FDF7E7;
@@ -87,6 +100,7 @@
     text-wrap: wrap;
     width:70vw;
     position:absolute;
+    z-index: 5;
   }
   #cards{
     padding: 2%;
@@ -106,7 +120,8 @@
     width: 100%;
     margin: 2%;
     padding: 2%;
-  }
+    
+}
   
   #card-list{
     display: flex;
