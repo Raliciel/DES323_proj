@@ -70,3 +70,11 @@ a {
   flex-shrink: 0;
   background: #FFF;
 }
+
+.choosebox{
+  width: 570px;
+  height: 659.765px;
+  flex-shrink: 0;
+  border-radius: 36px;
+  background: #42535D;
+}
