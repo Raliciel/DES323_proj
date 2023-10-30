@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: var(--bs-gutter-x,.75rem),;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
       "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
       sans-serif;
@@ -10,6 +10,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+nav {
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
 }
 
 .App {
@@ -36,6 +41,11 @@ code {
   color: #61dafb;
 }
 
+.container-fluid {
+  margin: 0px;
+  padding: 0px;
+}
+
 .heart {
   color: #ff0000;
 }
@@ -46,6 +56,11 @@ code {
 
 .header {
   background: #43888F;
+}
+
+.context {
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
 }
 
 .footer {
@@ -91,22 +106,44 @@ code {
     height: 30px;
   }
 }
-#mainDiv{
+
+.home-context div{
+  padding: 1em;
+}
+
+.home-context div:nth-child(odd) {
   background-color: #FAEEC8;
 }
-#subDiv{
+
+.home-context div:nth-child(even) {
   background-color: #FDF7E7;
 }
 
+#mainDiv{
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
+}
+#subDiv{
+  padding: 1em;
+}
+
 #grad {
-  background-image: linear-gradient(to right, #FA9EA9 ,rgba(255,0,0,0));
+  background-image: linear-gradient(to right, #FA9EA9 ,#FAEEC8);
   color:black;
   border:0;
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
 }
 #startButton{
   background-color: #43888F;
   color: #FDF7E7;
   border: 0;
-  border-radius: 4%;
+  border-radius: 12%;
+
+  margin: 2%;
   padding: 2%;
+}
+
+#cards{
+  padding: 4%;
 }
