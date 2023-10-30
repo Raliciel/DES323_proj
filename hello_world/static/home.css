@@ -68,10 +68,17 @@
   }
 
   #start-image{
-    mask-image: linear-gradient(to right, #fa9ea9 ,#faeec87e);
     height:50vh;
-    z-index: 1;
-    object-fit: contain;
+    background-image: url("../static/pieChart.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #start-image-cover {
+    background-color: #fa9ea9;
+    background: linear-gradient(to right, #fa9ea9 ,#faeec87e);
+    overflow: hidden;
+    height: 100%;
   }
 
   #start-heading{

@@ -13,8 +13,8 @@ code {
 }
 
 nav {
-  padding-right: var(--bs-gutter-x,.75rem);
-  padding-left: var(--bs-gutter-x,.75rem);
+  padding-right: .75rem !important;
+  padding-left: .75rem !important;
 }
 
 .App {
@@ -75,6 +75,7 @@ nav {
   margin: -2.5%;
   padding: 2.5%;
   margin-bottom: 3%;
+  font-size: 25px;
 }
 
 .footer-card {
