@@ -170,6 +170,7 @@ nav {
 #card-list{
   display: flex;
   justify-content: space-around;
+}
 #cards{
   padding: 4%;
 }
