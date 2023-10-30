@@ -18,10 +18,14 @@ a {
 @import url("https://fonts.googleapis.com/css?family=Inter:400");
 
 .dragfilebackground{
+  display: flex;
+  align-items: center;
+  justify-items: center;
   width: 656px;
   height: 488px;
   flex-shrink: 0;
   background: #DEF0F2;
+  border-radius: 2em;
 }
 
 .draganddrop{
@@ -35,6 +39,20 @@ a {
   
 }
 
+.dragbg2{
+  width: 489px;
+  height: 488px;
+  flex-shrink: 0;
+  background: #43888F;
+  border-radius: 2em;
+}
+
+.dragfilebackground, .dragbg2
+{
+    display:inline;
+     text-align:center;
+}
+
 .font1{
   color: #000;
   text-align: center;
@@ -43,21 +61,12 @@ a {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  
 }
 
-.dropimg {
-
-  width: 126px;
-  height: 168px;
+.graphbox{
+  width: 528px;
+  height: 115.344px;
   flex-shrink: 0;
-}
-
-div#no-background {
-  background-image: none;
-}
-
-.secback{
-  width: 489px;
-  height: 488px;
-  flex-shrink: 0;
+  background: #FFF;
 }
