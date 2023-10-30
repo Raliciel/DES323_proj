@@ -1,1 +1,74 @@
-<div>Settings</div>
+{% extends 'web/layout.html' %}
+{% load static %}
+{% block title %}
+Let's goooooooo
+{% endblock %}
+{% block content %}
+
+
+<body>
+    <style>
+        .underlined {
+            text-decoration: underline;
+            color: blue; /* You can change the color to suit your design */
+            cursor: pointer; /* Change the cursor style to indicate interactivity */
+            
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #333; /* Set the background color to black */
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            color: #fff;
+
+        }
+    </style>
+<div>
+    <h1>My Account</h1>
+    <table border="1">
+        <tr>
+            <th>NAME</th>
+            <th>DATE</th>
+            <th>TYPES OF VISUALIZATION</th>
+        </tr>
+        <tr>
+            <td class = underlined>Golf Score Chart</td>
+            <td>January 30, 2023</td>
+            <td>Pie Chart,Histogram,Multiple Bar Chart, etc.</td>
+        </tr>
+        <tr>
+            <td class = underlined>Makro Quarter Analysis</td>
+            <td>December 12, 2022</td>
+            <td>Lineplot,Barplot,Sunburst Chart,etc.</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+<div>
+    <h3>Change Your Name</h3>
+</div>
+
+
+
+
+
+<div>
+    <h3>Change your Password</h3>
+</div>
+
+
+
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+.underlined {
+    text-decoration: underline;
+    color: blue; /* You can change the color to suit your design */
+    cursor: pointer; /* Change the cursor style to indicate interactivity */
+}
+
+
+.tableborder {
+    border-collapse: collapse;
+    width: 100%;
+}
