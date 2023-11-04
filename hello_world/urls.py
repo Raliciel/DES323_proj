@@ -19,13 +19,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from hello_world.core import views as core_views
-
+from database import views as database_views
 urlpatterns = [
     path("", core_views.index),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("setting", core_views.setting),
-    path("home", core_views.home)
+    path("home", core_views.home),
+    path("import/csv", core_views.import_data_csv),
+    path("database/list_item/all", database_views.database_item_list_all ),
+    path("example/external_api", core_views.call_request_externel_api),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

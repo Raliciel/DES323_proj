@@ -1,4 +1,16 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+import pandas as pd
+from database.models import HR_description
+import requests
+import numpy as np
+from sklearn import preprocessing, svm
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import L
+
+
+
+
 
 def index(request):
     context = {
@@ -19,3 +31,35 @@ def home(request):
         "title": "Home Example",
     }
     return render(request, "web/home.html",context)
+
+
+
+def import_data_csv(request):
+    csv_url= "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvTTOhbRW72EatmKjQnmwYhHjVoK3lrkF_tvFxMMKjqWWJYGgrHKV4fvjfB6NTaqAkRaXiLcfcf8Hr/pub?output=csv"
+    df = pd.read_csv(csv_url)
+    data_sets = df[["Employee_Name", "EmpID", "Salary", "Position", "State", "Sex"]]
+    success=[]
+    errors=[]
+    for index, row in data_sets.iterrows():
+        instance = HR_description(
+            employee_name = row['Employee_Name'],
+            empID  = int(row['EmpID']),
+            Salary = int(row['Salary']),
+            position = row['Position'],
+            state = row['State'],
+            sex = row['Sex'],
+        )
+        try:
+            instance.save()
+            success.append(index)
+        except:
+            errors.append(index)
+    return JsonResponse({"success_indexes":success, "error_indexes":errors})
+
+
+def call_request_externel_api(request):
+    api_url="https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25"
+    response=requests.get(api_url)
+    print(response.json())
+    return JsonResponse(response.json())
+
