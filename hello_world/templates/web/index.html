@@ -7,6 +7,54 @@ Let's goooooooo
 
 {% block content %}
 <body>
+    <script>
+        function fetch_weather() {
+        axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
+        .then(function (response) {
+        // handle success
+        let weather_data = response.data['daily'];
+        let weather_div = document.getElementById('weathers');
+        console.log(weather_data)
+        weather_div.innerHTML = "<p style = 'color:white;'>" + JSON.stringify(weather_data) + "</p>";
+        });
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+    <script>
+        async function refresh_visual() {
+        let weather_data = await
+        axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
+            .then(function (response) {
+        // handle success
+            return response.data['daily'];
+        });
+        let temp_max = [];
+        let temp_min = [];
+        weather_data['time'].forEach((data, index) => {
+            let max_obj = {
+                "date": new Date(data),
+                "temperature": weather_data['temperature_2m_max'][index]
+            }
+            let min_obj = {
+                "date": new Date(data),
+                "temperature": weather_data['temperature_2m_min'][index]
+            }
+                temp_max.push(max_obj);
+                temp_min.push(min_obj);
+        });
+        const plot = Plot.plot({
+            marks: [
+                Plot.lineY(temp_max, { x: "date", y: "temperature", tip: "x", stroke: "red" }),
+                Plot.lineY(temp_min, { x: "date", y: "temperature", tip: "x", stroke: "blue" }),
+            ]
+        })
+        const div = document.getElementById('visual');
+        div.append(plot);
+        }
+        refresh_visual();
+    </script>
     <div class="container-fluid index-body">
         <div class="container-fluid index-context">
             <div class="web-topic">
@@ -22,7 +70,7 @@ Let's goooooooo
                 </div>
                 <div class="dragbg2">
                     <label class="font1">Search from devices</label>
-                    <button onClick="console.log('Upload Dataset')">Upload</button>
+                    <button onclick="console.log('Upload Dataset')">Upload</button>
                 </div>
             </div>
             <div class = "error">
@@ -30,9 +78,7 @@ Let's goooooooo
                 <p>You do not have a file yet</p>
             </div>
         </div>
-    
-    
-        
+
         <div class="container-fluid index-context">
             <div class="web-topic">
                 <div class="process-num">2
@@ -53,7 +99,7 @@ Let's goooooooo
                     <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
                     <label>Pie Chart</label>
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="fetch_weather()">
                     <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
                     <label>Line Chart</label>
                 </div>  
@@ -64,12 +110,12 @@ Let's goooooooo
             </div>
             <div class="web-topic">
                 <div class="desktop-homepage">
-                    <div class="fillfield">
-                        <h1>Choose your method before proceed</h1>
+                    <div class="fillfield" id = "visual">
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="container-fluid index-context">
             <div class="web-topic">
                 <div class="process-num">3
@@ -77,7 +123,7 @@ Let's goooooooo
                 <label>Statistic Summary</label>
             </div>
             <div class="result">
-                <div class="fillfield">
+                <div class="fillfield" id = "weathers">
                     <h1>You do not have a file yet</h1>
                 </div>
                 <button onClick="console.log('Download Dataset')">Download your model</button>
