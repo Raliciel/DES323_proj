@@ -6,7 +6,7 @@ import requests
 import numpy as np
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import L
+from sklearn.linear_model import LogisticRegression
 
 
 
@@ -63,3 +63,32 @@ def call_request_externel_api(request):
     print(response.json())
     return JsonResponse(response.json())
 
+
+from django.http import JsonResponse
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+def classification(request):
+    # Assuming 'position' is a categorical variable you want to predict
+    positions = list(HR_description.objects.all().order_by('id').values_list('position', flat=True))
+    salaries = list(HR_description.objects.all().order_by('id').values_list('Salary', flat=True))
+
+    X = np.array(salaries).reshape(-1, 1)
+    y = np.array(positions)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+    classifier = LogisticRegression()
+    classifier.fit(X_train, y_train)
+
+    y_pred = classifier.predict(X)
+
+    # Please note that you may need to adapt this section based on your specific classification task
+    # You can replace this with the appropriate evaluation and visualization logic for your classification results
+
+    # Here, we just return the predicted positions
+    json_output = {
+        'salaries': salaries,
+        'predicted_positions': list(y_pred)
+    }
+    return JsonResponse(json_output)

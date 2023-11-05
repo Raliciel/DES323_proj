@@ -24,35 +24,39 @@ Let's goooooooo
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
     <script>
         async function refresh_visual() {
-        let weather_data = await
-        axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
-            .then(function (response) {
-        // handle success
-            return response.data['daily'];
+    let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
+        .then(function (response) {
+            return response.data;
         });
-        let temp_max = [];
-        let temp_min = [];
-        weather_data['time'].forEach((data, index) => {
-            let max_obj = {
-                "date": new Date(data),
-                "temperature": weather_data['temperature_2m_max'][index]
-            }
-            let min_obj = {
-                "date": new Date(data),
-                "temperature": weather_data['temperature_2m_min'][index]
-            }
-                temp_max.push(max_obj);
-                temp_min.push(min_obj);
-        });
-        const plot = Plot.plot({
-            marks: [
-                Plot.lineY(temp_max, { x: "date", y: "temperature", tip: "x", stroke: "red" }),
-                Plot.lineY(temp_min, { x: "date", y: "temperature", tip: "x", stroke: "blue" }),
-            ]
-        })
-        const div = document.getElementById('visual');
-        div.append(plot);
+
+    let salaryall = [];
+    let predicts = [];
+
+    salary_api['salaries'].forEach((data, index) => {
+        let real_obj = {
+            "Salary": data,
+            "position": salary_api['predicted_positions'][index]
         }
+        let pred_obj = {
+            "Salary": data,
+            "position": salary_api['predicted_positions'][index]
+        }
+        salaryall.push(real_obj);
+        predicts.push(pred_obj);
+    });
+
+    const plot = Plot.plot({
+        marks: [
+            Plot.dot(salaryall, { x: "Salary", y: "position", tip: "x", stroke: "red" }),
+            Plot.dot(predicts, { x: "Salary", y: "position", tip: "x", stroke: "blue" }),
+        ]
+    });
+    
+    const div = document.getElementById('visual');
+    div.append(plot);
+}
+
+        
         refresh_visual();
     </script>
     <div class="container-fluid index-body">
