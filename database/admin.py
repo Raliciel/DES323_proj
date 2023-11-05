@@ -17,6 +17,6 @@ class HR_departmentAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(setting)
-class settingAdmin(admin.ModelAdmin):
+@admin.register(settingtool)
+class settingtoolAdmin(admin.ModelAdmin):
     pass

@@ -24,7 +24,7 @@ class HR_department(models.Model):
 
 
 
-class setting(models.Model):
+class settingtool(models.Model):
 
     proj_name = models.CharField(max_length=255)
     Date = models.DateField(null=True)

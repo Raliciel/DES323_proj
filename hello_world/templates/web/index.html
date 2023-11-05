@@ -34,12 +34,12 @@ Let's goooooooo
 
     salary_api['salaries'].forEach((data, index) => {
         let real_obj = {
-            "Salary": data,
-            "position": salary_api['predicted_positions'][index]
+            "salaries": data,
+            "position": salary_api['position'][index]
         }
         let pred_obj = {
-            "Salary": data,
-            "position": salary_api['predicted_positions'][index]
+            "salaries": data,
+            "position": salary_api['position'][index]
         }
         salaryall.push(real_obj);
         predicts.push(pred_obj);
@@ -47,10 +47,10 @@ Let's goooooooo
 
     const plot = Plot.plot({
         marks: [
-            Plot.dot(salaryall, { x: "Salary", y: "position", tip: "x", stroke: "red" }),
-            Plot.dot(predicts, { x: "Salary", y: "position", tip: "x", stroke: "blue" }),
+            Plot.dotY(salaryall, { x: "salaries", y: "position", tip: "x", stroke: "red" }),
+            Plot.dotY(predicts, { x: "salaries", y: "position", tip: "x", stroke: "blue" }),
         ]
-    });
+    })
     
     const div = document.getElementById('visual');
     div.append(plot);
@@ -103,13 +103,17 @@ Let's goooooooo
                     <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
                     <label>Pie Chart</label>
                 </div>  
-                <div class="subchoice" onclick="fetch_weather()">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
                     <label>Line Chart</label>
                 </div>  
                 <div class="subchoice">
                     <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
                     <label>Dot Chart</label>
+                </div>  
+                    <div class="subchoice">
+                    <img class="logistic" src="{% static 'logistic.png' %}" />
+                    <label>Logistic Regression</label>
                 </div>  
             </div>
             <div class="web-topic">

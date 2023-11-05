@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import *
 # Create your views here.
 def database_item_list_all(request):
-    dataset_objs = setting.objects.all()
+    dataset_objs = settingtool.objects.all()
     context_data = {
         "filter_type":"All",
         "datasets":dataset_objs

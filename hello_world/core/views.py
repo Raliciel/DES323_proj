@@ -88,7 +88,8 @@ def classification(request):
 
     # Here, we just return the predicted positions
     json_output = {
+        'position': positions,
         'salaries': salaries,
-        'predicted_positions': list(y_pred)
+        'predicted_positions': list(y_pred.flat)
     }
     return JsonResponse(json_output)

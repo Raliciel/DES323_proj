@@ -11,12 +11,12 @@
     {% for row in datasets %}
         <tr>
             <td>{{ row.id }}</td>
-            <td>{{ row.proj_name}}</td>
+            <td>{{ row.proj_name }}</td>
             <td>{{ row.Date }}</td>
             <td>{{ row.type_v }}</td>
         <td>
-            <a href="/data_sci/form/edit/{{ row.id }}">Edit</a>
-            <a href="/data_sci/form/delete/{{ row.id }}">Delete</a>
+            <a href="/database/{{ row.id }}">Edit</a>
+            <a href="/database/form/delete/{{ row.id }}">Delete</a>
         </td>
         </tr>
     {% endfor %}
