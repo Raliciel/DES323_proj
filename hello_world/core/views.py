@@ -32,7 +32,9 @@ def home(request):
     }
     return render(request, "web/home.html",context)
 
-
+def login(request):
+    context = {"title": "Login"}
+    return render(request, "web/login.html",context)
 
 def import_data_csv(request):
     csv_url= "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvTTOhbRW72EatmKjQnmwYhHjVoK3lrkF_tvFxMMKjqWWJYGgrHKV4fvjfB6NTaqAkRaXiLcfcf8Hr/pub?output=csv"
