@@ -25,6 +25,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("setting", database_views.database_item_list_all),
+    path("setting", database_views.database_item_edit),
+    path("database/name", database_views.database_all_item),
     path("home", core_views.home),
     path("import/csv", core_views.import_data_csv),
     path("database/list_item/all", database_views.database_item_list_all),

@@ -20,3 +20,7 @@ class HR_departmentAdmin(admin.ModelAdmin):
 @admin.register(settingtool)
 class settingtoolAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(userall)
+class userallAdmin(admin.ModelAdmin):
+    pass

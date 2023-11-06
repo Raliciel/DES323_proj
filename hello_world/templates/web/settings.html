@@ -41,22 +41,25 @@ Let's goooooooo
     
         <div class = "index-context setting-context">
             <h2>Change Your Name</h2>
+            <form action="" method="post">
+            {% csrf_token %}
             <div class = "input">
-                <label>First Name</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="first_name">First Name</label>
+                <input value="{{form_data.first_name}}" class = input-container type="text" placeholder="Enter text" name="first_name">
             </div>
             <div class = "input">
-                <label>Last Name</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="last_name">Last Name</label>
+                <input value="{{form_data.last_name}}" class = input-container type="text" placeholder="Enter text" name="last_name">
             </div>
             <div class = "input">
-                <label>Account</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="account">Account</label>
+                <input value="{{form_data.account}}" class = input-container type="text" placeholder="Enter text" name="account">
             </div>   
             <div class = "input">
-                <label>Email</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="email">Email</label>
+                <input value="{{form_data.email}}" class = input-container type="text" placeholder="Enter text" name="email">
             </div>   
+            
         </div>
     
     
@@ -65,12 +68,12 @@ Let's goooooooo
         <div class = "index-context setting-context">
             <h2>Change your Password</h2>
             <div class = "input">
-                <label>New Password</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="password">New Password</label>
+                <input value="{{form_data.newpassword}}" class = input-container type="text" placeholder="Enter text" name="password">
             </div>   
             <div class = "input">
-                <label>Old Password</label>
-                <input class = input-container type="text" placeholder="Enter text">
+                <label for="password">Old Password</label>
+                <input value="{{form_data.password}}" class = input-container type="text" placeholder="Enter text" name="password">
             </div>
             <div class = "setting-notice">
                 <p>* Please note after changing your password, you must log back in</p>
@@ -80,6 +83,7 @@ Let's goooooooo
                 </div>
             </div>
         </div>
+    </form>
     </div>
     
 </body>

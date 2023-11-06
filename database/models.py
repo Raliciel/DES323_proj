@@ -31,3 +31,12 @@ class settingtool(models.Model):
     type_v = models.CharField(max_length=255)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     added_date = models.DateTimeField(default=timezone.now)
+
+
+class userall(models.Model):
+
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    account = models.CharField(max_length=255)
+    email =  models.CharField(max_length=255)
+    password  = models.CharField(max_length=255)
