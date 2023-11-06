@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+
 import pandas as pd
-from database.models import HR_description
+from database.models import HR_description, File
+
 import requests
 import numpy as np
 from sklearn import preprocessing, svm
@@ -95,3 +97,13 @@ def classification(request):
         'predicted_positions': list(y_pred.flat)
     }
     return JsonResponse(json_output)
+
+def import_csv(request):
+    if request.METHOD == "POST":
+        file = request.FILES['file']
+        obj = File.objects.create(file = file)
+    return render(request , 'main.html')
+
+def create_db(file_path):
+    df = pd.read_csv(file_path, delimiter=',')
+    print (df)

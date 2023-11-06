@@ -33,6 +33,7 @@ urlpatterns = [
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
     path("login", core_views.login),
+    path("importcsv", core_views.import_csv)
 
     
 ]
