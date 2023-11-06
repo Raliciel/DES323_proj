@@ -19,7 +19,7 @@ def index(request):
     return render(request, "web/index.html", context)
 
 
-def setting(request):
+#def setting(request):
     context = {
         "title": "Setting Example",
     }

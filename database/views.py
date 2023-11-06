@@ -7,4 +7,4 @@ def database_item_list_all(request):
         "filter_type":"All",
         "datasets":dataset_objs
     }
-    return render(request, 'database/list_view.html', context= context_data)
+    return render(request, 'web/settings.html', context= context_data)

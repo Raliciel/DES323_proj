@@ -18,19 +18,22 @@ Let's goooooooo
                     <th>TYPES OF VISUALIZATION</th>
                     <th>Delete</th>
                 </tr>
+                {% for row in datasets %}
+                <tr>
+                    <td class = "underlined" onClick="console.log('Hello World')">{{ row.proj_name }}</td>
+                    <td>{{ row.Date }}</td>
+                    <td>{{ row.type_v }}</td>
+                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
+                </tr>
+               
+                {% endfor %}
+         <!--     <tr>
+                    <td class = "underlined" onClick="console.log('Hello World')">{{ row.proj_name }}s</td>
+                    <td>{{ row.Date }}</td>
+                    <td>{{ row.type_v }}</td>
+                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
+                </tr>-->  
                 
-                <tr>
-                    <td class = "underlined" onClick="console.log('Hello World')">Golf Score Char</td>
-                    <td>January 30, 2023</td>
-                    <td>Pie Chart,Histogram,Multiple Bar Chart, etc.</td>
-                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td class = "underlined" onClick="console.log('Hello World')">Makro Quarter Analysis</td>
-                    <td>December 12, 2022</td>
-                    <td>Lineplot,Barplot,Sunburst Chart,etc.</td>
-                    <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
-                </tr>
             </table>
         </div>
     
@@ -78,6 +81,7 @@ Let's goooooooo
             </div>
         </div>
     </div>
+    
 </body>
 
 {% endblock %}
