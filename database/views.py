@@ -60,7 +60,7 @@ def database_item_edit(request, id):
         item.last_name = form_data['last_name']
         item.account = form_data['account']
         item.email = form_data['email']
-        item.password = form_data['newpassword']
+        item.password = form_data['password']
         try:
             item.save()
         except:
@@ -73,8 +73,16 @@ def database_item_edit(request, id):
             'last_name':item.last_name,
             'account':item.account,
             'email':item.email,
-            'newpassword':item.password,
+            'password':item.password,
 
     }
 }
     return render(request, 'web/settings.html', context= context_data)
+
+
+def data_sci_item_delete(request, id):
+    dataset_objs = settingtool.objects.filter(id = id)
+    if len(dataset_objs) <= 0:
+        return HttpResponse("ID Not found")
+    dataset_objs.delete()
+    return redirect('/web/settings.html')
