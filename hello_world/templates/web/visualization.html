@@ -6,8 +6,7 @@ D3 Visualization
 {% endblock %}
 
 {% block content %}
-<div id = "visualization"> 
-
+<div id = "weathers"> </div>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -32,26 +31,24 @@ D3 Visualization
             return response.data;
         });
 
-    let salaryall = [];
-    let predicts = [];
-
-    salary_api['salaries'].forEach((data, index) => {
-        let real_obj = {
-            "salaries": data,
-            "position": salary_api['position'][index]
+        let temp_max = [];
+        let temp_min = [];
+        weather_data['time'].forEach((data, index) => {
+        let max_obj = {
+        "date": new Date(data),
+        "temperature": weather_data['temperature_2m_max'][index]
         }
-        let pred_obj = {
-            "salaries": data,
-            "position": salary_api['position'][index]
+        let min_obj = {
+        "date": new Date(data),
+        "temperature": weather_data['temperature_2m_min'][index]
         }
-        salaryall.push(real_obj);
-        predicts.push(pred_obj);
-    });
-
-    const plot = Plot.plot({
+        temp_max.push(max_obj);
+        temp_min.push(min_obj);
+        });
+        const plot = Plot.plot({
         marks: [
-            Plot.dotY(salaryall, { x: "salaries", y: "position", tip: "x", stroke: "red" }),
-            Plot.dotY(predicts, { x: "salaries", y: "position", tip: "x", stroke: "blue" }),
+        Plot.lineY(temp_max, { x: "date", y: "temperature", tip: "x", stroke: "red" }),
+        Plot.lineY(temp_min, { x: "date", y: "temperature", tip: "x", stroke: "blue" }),
         ]
     })
     
