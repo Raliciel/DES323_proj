@@ -25,15 +25,18 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("setting", database_views.database_item_list_all),
-    path("setting", database_views.database_item_edit),
-    path("database/name", database_views.database_all_item),
+    path("database/view", database_views.database_item_all),
+    path("database/name/edit/<id>", database_views.database_item_edit),
+    path("database/name", database_views.database_name),
+    path("database/name/del/<id>", database_views.data_sci_item_delete),
     path("home", core_views.home),
     path("import/csv", core_views.import_data_csv),
     path("database/list_item/all", database_views.database_item_list_all),
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
     path("login", core_views.login),
-
+    path("database/log", database_views.database_login_add),
+    path("userinfo", database_views.user_name),
     
 ]
 if settings.DEBUG:

@@ -11,6 +11,7 @@ Let's goooooooo
         <div class = "index-context setting-context">
             <h1 class = "container-fluid">Setting</h1>
             <h2>My Account</h2>
+            
             <table border="1">
                 <tr>
                     <th>NAME</th>
@@ -23,6 +24,7 @@ Let's goooooooo
                     <td class = "underlined" onClick="console.log('Hello World')">{{ row.proj_name }}</td>
                     <td>{{ row.Date }}</td>
                     <td>{{ row.type_v }}</td>
+                   
                     <td><button onclick="console.log('Delete Dataset')">Delete</button></td>
                 </tr>
                
@@ -43,6 +45,7 @@ Let's goooooooo
         <h2>Change Your Name</h2>
         <form action="" method="post">
             {% csrf_token %}
+            <input type="hidden" name="item_id" value="{{ item_id }}">
             <div class = "input">
                 <label for="first_name">First Name</label>
                 <input value="{{form_data.first_name}}" class = input-container type="text" placeholder="Enter text" name="first_name">

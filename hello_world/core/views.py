@@ -36,6 +36,12 @@ def login(request):
     context = {"title": "Login"}
     return render(request, "web/login.html",context)
 
+def info(request):
+    context = {
+        "title": "Django example",
+    }
+    return render(request, "web/userinfo.html", context)
+
 def import_data_csv(request):
     csv_url= "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvTTOhbRW72EatmKjQnmwYhHjVoK3lrkF_tvFxMMKjqWWJYGgrHKV4fvjfB6NTaqAkRaXiLcfcf8Hr/pub?output=csv"
     df = pd.read_csv(csv_url)
