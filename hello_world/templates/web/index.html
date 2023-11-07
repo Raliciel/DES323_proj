@@ -7,6 +7,7 @@ Main
 
 {% block content %}
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
         function fetch_weather() {
         axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
@@ -15,11 +16,11 @@ Main
         let weather_data = response.data['daily'];
         let weather_div = document.getElementById('weathers');
         console.log(weather_data)
-        weather_div.innerHTML = "<p style = 'color:white;'>" + JSON.stringify(weather_data) + "</p>";
+        weather_div.innerHTML = JSON.stringify(weather_data);
         });
     }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
     <script>
@@ -113,17 +114,17 @@ Main
                 </div>
                 <label>Choose your visualizing method</label>
             </div>
-            <div class="choices">
+            <div class="choices" onclick="refresh_visual()">
                 <div class="subchoice">
                     <img class="bar-chart" src="{% static 'bar-chart-01.png' %}" />
                     <label>Histogram</label> 
                     
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'bar-chart-02.png' %}" />
                     <label>Horizontal Histogram</label>
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
                     <label>Pie Chart</label>
                 </div>  
@@ -131,11 +132,11 @@ Main
                     <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
                     <label>Line Chart</label>
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
                     <label>Dot Chart</label>
                 </div>  
-                    <div class="subchoice">
+                    <div class="subchoice" onclick="refresh_visual()">
                     <img class="logistic" src="{% static 'logistic.png' %}" />
                     <label>Logistic Regression</label>
                 </div>  
@@ -143,6 +144,7 @@ Main
             <div class="web-topic">
                 <div class="desktop-homepage">
                     <div class="fillfield" id = "visual">
+                      <!-- D3 Visualization is HERE -->
                     </div>
                 </div>
             </div>
@@ -160,7 +162,7 @@ Main
                 </div>
                 <button onClick="console.log('Download Dataset')">Download your model</button>
             </div>
-                    
+                
             </div>
         </div>
     </div>
