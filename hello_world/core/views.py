@@ -2,14 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 import pandas as pd
-from database.models import HR_description 
-# , File
+from database.models import HR_description
 
 import requests
 import numpy as np
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+
+from .forms import UploadFileForm
+
+
 
 def index(request):
     context = {
@@ -18,11 +21,12 @@ def index(request):
     return render(request, "web/index.html", context)
 
 
-def setting(request):
+#def setting(request):
     context = {
         "title": "Setting Example",
     }
     return render(request, "web/settings.html",context)
+
 
 def home(request):
     context = {
@@ -34,37 +38,47 @@ def login(request):
     context = {"title": "Login"}
     return render(request, "web/login.html",context)
 
-def import_data_csv(request):
-    csv_url= "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvTTOhbRW72EatmKjQnmwYhHjVoK3lrkF_tvFxMMKjqWWJYGgrHKV4fvjfB6NTaqAkRaXiLcfcf8Hr/pub?output=csv"
-    df = pd.read_csv(csv_url)
-    data_sets = df[["Employee_Name", "EmpID", "Salary", "Position", "State", "Sex"]]
-    success=[]
-    errors=[]
-    # (2) import CSV from kaggle to database
-    for index, row in data_sets.iterrows():
-        instance = HR_description(
-            employee_name = row['Employee_Name'],
-            empID  = int(row['EmpID']),
-            Salary = int(row['Salary']),
-            position = row['Position'],
-            state = row['State'],
-            sex = row['Sex'],
-        )
-        try:
-            instance.save()
-            success.append(index)
-        except:
-            errors.append(index)
-    return JsonResponse({"success_indexes":success, "error_indexes":errors})
+# views.py
+from django.shortcuts import render, redirect
+from .forms import UploadFileForm
+import pandas as pd
+from django.http import JsonResponse
 
-# (3)  Call external api
+def import_data_csv(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = form.cleaned_data['file']
+            try:
+                if uploaded_file.name.endswith('.csv'):
+                    df = pd.read_csv(uploaded_file)
+                elif uploaded_file.name.endswith('.json'):
+                    df = pd.read_json(uploaded_file)
+                else:
+                    return render(request, 'upload_csv.html', {'form': form, 'error_message': 'Invalid file format.'})
+                
+                # Convert the DataFrame to an HTML table for rendering
+                table_html = df.to_html(classes='table table-striped')
+                
+                # Redirect to the view_data page with the table data
+                return render(request, 'view_data.html', {'table_html': table_html})
+            except Exception as e:
+                return render(request, 'upload_csv.html', {'form': form, 'error_message': 'Invalid file format or structure.'})
+    else:
+        form = UploadFileForm()
+    
+    return render(request, 'upload_csv.html', {'form': form})
+
 def call_request_externel_api(request):
     api_url="https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25"
     response=requests.get(api_url)
     print(response.json())
     return JsonResponse(response.json())
 
-# (3) Create Prediction Model
+
+from django.http import JsonResponse
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 def classification(request):
     # Assuming 'position' is a categorical variable you want to predict
@@ -92,17 +106,13 @@ def classification(request):
     }
     return JsonResponse(json_output)
 
-# def import_csv(request): DUPLICATED?
-#     if request.METHOD == "POST":
-#         file = request.FILES['file']
-#         obj = File.objects.create(file = file)
-#     return render(request , 'main.html')
+def import_csv(request):
+    if request.METHOD == "POST":
+        file = request.FILES['file']
+        obj = File.objects.create(file = file)
+    return render(request , 'main.html')
 
 def create_db(file_path):
     df = pd.read_csv(file_path, delimiter=',')
-    print (df)
+    list_of_csv = [list(row) for row in df.values]
 
-def visualization(request):
-    context = classification(request) # get classification Result
-    # D3 visualization views function
-    return render(request, "web/visualization.html", {'json_output': context})

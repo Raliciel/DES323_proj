@@ -40,3 +40,4 @@ class userall(models.Model):
     account = models.CharField(max_length=255)
     email =  models.CharField(max_length=255)
     password  = models.CharField(max_length=255)
+
