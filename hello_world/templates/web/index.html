@@ -18,6 +18,7 @@ Main
         console.log(weather_data)
         weather_div.innerHTML = JSON.stringify(weather_data);
         });
+        // var data = {{ json_output|safe }};
     }
     </script>
     
@@ -26,10 +27,11 @@ Main
     <script>
         async function refresh_visual() {
             fetch_weather();
-    let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
-        .then(function (response) {
-            return response.data;
-        });
+    // let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
+    //     .then(function (response) {
+    //         return response.data;
+    //     });
+    let salary_api
 
     let salaryall = [];
     let predicts = [];
@@ -89,7 +91,7 @@ Main
                                 <span id="fileLabel"><img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />No file chosen</span>
                             </div>
                             <div class="row"></div>
-                            <button type="submit" class="btn btn-success">Upload</button>
+                            <button type="submit" class="btn btn-success" onclick="fetch_weather(// later change to file url)">Upload</button>
                         </div>
                     </div>
                 </div>
