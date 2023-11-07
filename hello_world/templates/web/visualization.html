@@ -6,28 +6,62 @@ D3 Visualization
 {% endblock %}
 
 {% block content %}
-<div id = "visualization"> </div>
+<div id = "visualization"> 
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
-
-<button onclick="refresh_visual()">Refresh Visualization</button>
 <script>
-async function refresh_visual()
-{
-    // get data
+    function fetch_data(){
+    axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
+    .then(function (response) {
+    // handle success
+    let weather_data = response.data['daily'];
+    let weather_div = document.getElementById('weathers');
+    weather_div.innerHTML = JSON.stringify(weather_data);
+    });
+}
+</script>
+<button onclick="fetch_data()">Fetch Data</button>
+<script>
     
-    // prepare data memory
-    // loop assign foreach & push
+    async function refresh_visual() {
+    let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
+        .then(function (response) {
+            return response.data;
+        });
+
+    let salaryall = [];
+    let predicts = [];
+
+    salary_api['salaries'].forEach((data, index) => {
+        let real_obj = {
+            "salaries": data,
+            "position": salary_api['position'][index]
+        }
+        let pred_obj = {
+            "salaries": data,
+            "position": salary_api['position'][index]
+        }
+        salaryall.push(real_obj);
+        predicts.push(pred_obj);
+    });
 
     const plot = Plot.plot({
-        marks:[
-            //Plot
-            ]
-        })
-    const div = document.getElementById('visualization');
+        marks: [
+            Plot.dotY(salaryall, { x: "salaries", y: "position", tip: "x", stroke: "red" }),
+            Plot.dotY(predicts, { x: "salaries", y: "position", tip: "x", stroke: "blue" }),
+        ]
+    })
+    
+    const div = document.getElementById('visual');
     div.append(plot);
 }
 
 refresh_visual();
 </script>
+
+<button onclick="refresh_visual()">Refresh Visualization</button>
+</div>
 {% endblock %}

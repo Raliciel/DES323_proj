@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import *
 from django.http import HttpResponse
+from .models import *
 from django.shortcuts import render, redirect
 # Create your views here.
 def database_item_list_all(request):
@@ -10,6 +10,23 @@ def database_item_list_all(request):
         "datasets":dataset_objs
     }
     return render(request, 'web/settings.html', context= context_data)
+
+# for setting per user
+# def database_item_of_user(request, id):
+#     try:
+#         user_items = settingtool.objects.get(id = id)
+#     except:
+#         return HttpResponse("User Not Found")
+    
+#     if request.method =="POST":
+#         form_data = request.POST
+#         user_items
+        
+#     context_data = {
+#         "filter_type":"All",
+#         "datasets":dataset_objs
+#     }
+#     return render(request, 'web/settings.html', context= context_data)
 
 def database_all_item(request):
     dataset_objs = userall.objects.all()
@@ -80,7 +97,7 @@ def database_item_edit(request, id):
     return render(request, 'web/settings.html', context= context_data)
 
 
-def data_sci_item_delete(request, id):
+def database_item_delete(request, id):
     dataset_objs = settingtool.objects.filter(id = id)
     if len(dataset_objs) <= 0:
         return HttpResponse("ID Not found")

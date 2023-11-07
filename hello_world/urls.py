@@ -28,7 +28,9 @@ urlpatterns = [
 
     # DATABASE VIEWS
     path("setting", database_views.database_item_list_all),
-    path("database/name", database_views.database_all_item),
+    # path("setting/<id>",database_views.database_item_of_user),
+    path("database/allitem", database_views.database_all_item),
+    
     
     # CORE VIEWS
     path("", core_views.index),
