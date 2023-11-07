@@ -28,10 +28,10 @@ urlpatterns = [
 
     # DATABASE VIEWS
     path("setting", database_views.database_item_list_all),
-    # path("setting/<id>",database_views.database_item_of_user),
-    path("database/allitem", database_views.database_all_item),
     path("setting", database_views.database_item_edit),
     path("database/name", database_views.database_all_item),
+    path("home", core_views.home),
+    path("import/csv", core_views.import_data_csv),
     path("database/list_item/all", database_views.database_item_list_all),
 
     # CORE VIEWS
@@ -41,13 +41,8 @@ urlpatterns = [
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
     path("login", core_views.login),
-    path("importcsv", core_views.import_data_csv), # import kaggle dataset to database before Classify/Visualize
-    path("visualize/classification", core_views.classification), # (3) Create prediction model
-    # path("visualize/d3viz", core_views.visualization), # scratch 
-    # path("setting", database_views.database_item_edit), duplicated idk?
-    # path("importcsv", core_views.import_csv), duplicated?
-    # path("database/list_item/all", database_views.database_item_list_all), same as setting
-    path("example/external_api", core_views.call_request_externel_api),  # (3) Call External API
+    path("importcsv", core_views.import_csv)
+
     
 ]
 

@@ -38,12 +38,6 @@ def login(request):
     context = {"title": "Login"}
     return render(request, "web/login.html",context)
 
-# views.py
-from django.shortcuts import render, redirect
-from .forms import UploadFileForm
-import pandas as pd
-from django.http import JsonResponse
-
 def import_data_csv(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
