@@ -92,22 +92,8 @@ Main
                 </div>
 
                 <div class="dragbg2">
-                    <div class="d-grid gap-4 col-4 mx-auto">
-                        <div class="col">
-                            <div class="row">
-                                <p class="fs-2">Upload Your Dataset</p>
-                            </div>
-                            <div class="row">
-                                <label for="fileInput" class="btn btn-primary btn-sm">
-                                    <input type="file" id="fileInput" name="file" accept=".csv, .json" style="display: none;">
-                                    Choose File
-                                </label>
-                                <span id="fileLabel"><img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />No file chosen</span>
-                            </div>
-                            <div class="row"></div>
-                            <button type="submit" class="btn btn-success" onclick="fetch_data()">Upload</button>
-                        </div>
-                    </div>
+                    <label class="font1">Upload Your Dataset</label>
+                    <input class= "uploadFile" id="fileInput" name="file" accept=".csv, .json" type="file">
                 </div>
                 
                 <script>
