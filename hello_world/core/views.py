@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 import pandas as pd
-from database.models import HR_description
-# , File
+from database.models import *
+# HR_description , File
 
 import requests
 import numpy as np
@@ -22,7 +22,7 @@ def index(request):
     return render(request, "web/index.html", context)
 
 
-#def setting(request):
+def setting(request):
     context = {
         "title": "Setting Example",
     }
