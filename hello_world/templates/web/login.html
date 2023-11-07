@@ -1,15 +1,18 @@
 {% extends 'web/layout.html' %}
 {% load static %}
+
 {% block title %}
 Login
 {% endblock %}
 {% block content %}
+
 <body>
     <div class = "index-body">
         <div class = "index-context setting-context">
             <h1>Login</h1>
 
             <form action="" method="post">
+                {% csrf_token %}
                 <div class = "input">
                     <label for="first_name">Username</label>
                     <input value="{{form_data.first_name}}" class = input-container type="text" placeholder="Enter text" name="first_name">
@@ -19,8 +22,10 @@ Login
                     <input value="{{form_data.first_name}}" class = input-container type="text" placeholder="Enter text" name="first_name">
                 </div>
                 <div class = "passChange">
-                    <button style = "background-color: #43888F;" onClick="console.log('Change Password')">Log in</button>
-                    <button style = "background-color: #DEF0F2; color:black" onClick="console.log('Clear Data')">Register</button>
+                    <button style = "background-color: #43888F;" 
+                        onClick="console.log('Logging In')">Log in</button>
+                    <button style = "background-color: #DEF0F2; color:black" 
+                        onClick="console.log('Register')">Register</button>
                 </div>
             </form>
         </div>
