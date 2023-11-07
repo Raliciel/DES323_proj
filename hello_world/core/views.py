@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 import pandas as pd
-from database.models import HR_description, File
+from database.models import HR_description
+# , File
 
 import requests
 import numpy as np
