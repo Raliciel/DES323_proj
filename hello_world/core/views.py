@@ -110,7 +110,7 @@ def import_csv(request):
     if request.METHOD == "POST":
         file = request.FILES['file']
         obj = File.objects.create(file = file)
-    return render(request , 'home.html')
+    return render(request , 'main.html')
 
 def create_db(file_path):
     df = pd.read_csv(file_path, delimiter=',')
