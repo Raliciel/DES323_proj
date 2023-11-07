@@ -25,6 +25,7 @@ Main
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
     <script>
         async function refresh_visual() {
+            fetch_weather();
     let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
         .then(function (response) {
             return response.data;
@@ -107,7 +108,7 @@ Main
                 </script>                
                 
             </div>
-
+            
         <div class="container-fluid index-context">
             <div class="web-topic">
                 <div class="process-num">2
