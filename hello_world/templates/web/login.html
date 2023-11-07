@@ -1,9 +1,11 @@
 {% extends 'web/layout.html' %}
 {% load static %}
+
 {% block title %}
 Login
 {% endblock %}
 {% block content %}
+
 <body>
     <div class = "index-body">
         <div class = "index-context setting-context">
@@ -32,8 +34,10 @@ Login
                     <input value="{{form_data.password}}" class = input-container type="text" placeholder="Enter text" name="password">
                 </div>
                 <div class = "passChange">
-                    <button style = "background-color: #43888F;" onClick="console.log('Change Password')">Log in</button>
-                    <button style = "background-color: #DEF0F2; color:black" onClick="console.log('Clear Data')">Register</button>
+                    <button style = "background-color: #43888F;" 
+                        onClick="console.log('Logging In')">Log in</button>
+                    <button style = "background-color: #DEF0F2; color:black" 
+                        onClick="console.log('Register')">Register</button>
                 </div>
             </form>
         </div>

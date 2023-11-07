@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from .models import *
 from django.http import HttpResponse
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect
 # Create your views here.
 def database_item_list_all(request):
     dataset_objs = settingtool.objects.all()
@@ -11,17 +10,7 @@ def database_item_list_all(request):
     }
     return render(request, 'web/settings.html', context= context_data)
 
-def database_item_all(request):
-    dataset_objs = settingtool.objects.all()
-    context_data = {
-        "filter_type":"All",
-        "datasets":dataset_objs
-    }
-    return render(request, 'database/list_view.html', context= context_data)
-
-
-
-def database_name(request):
+def database_all_item(request):
     dataset_objs = userall.objects.all()
     context_data = {
         "filter_type":"All",
@@ -106,7 +95,7 @@ def database_item_edit(request, id):
 
 
 def data_sci_item_delete(request, id):
-    dataset_objs = userall.objects.filter(id = id)
+    dataset_objs = settingtool.objects.filter(id = id)
     if len(dataset_objs) <= 0:
         return HttpResponse("ID Not found")
     dataset_objs.delete()

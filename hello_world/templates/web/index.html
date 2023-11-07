@@ -2,33 +2,51 @@
 {% extends 'web/layout.html' %}
 {% load static %}
 {% block title %}
-Let's goooooooo
+Main
 {% endblock %}
 
 {% block content %}
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
         function fetch_weather() {
-        axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
-        .then(function (response) {
-        // handle success
-        let weather_data = response.data['daily'];
-        let weather_div = document.getElementById('weathers');
-        console.log(weather_data)
-        weather_div.innerHTML = "<p style = 'color:white;'>" + JSON.stringify(weather_data) + "</p>";
+            axios.get('https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25')
+            .then(function (response) {
+            // handle success
+            let weather_data = response.data['daily'];
+            let weather_div = document.getElementById('weathers');
+            console.log(weather_data);
+            weather_div.innerHTML = JSON.stringify(weather_data);
         });
+        // var data = {{ json_output|safe }};
     }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        function fetch_data() {
+            fetch('https://fluffy-disco-5r6x9p45rw9h4wr4-8000.app.github.dev/visualize/classification')
+            .then(response=> response.json())
+            .then(data=>{
+                let weather_div = document.getElementById('weathers');
+                weather_div.innerHTML = JSON.stringify(data);
+                // create visualization right after cuz we got no choice now
+                refresh_visual(data)
+            })
+            .catch(error =>{
+                console.error("Error Fetching",error);
+            })
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
     <script>
-        async function refresh_visual() {
-    let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
-        .then(function (response) {
-            return response.data;
-        });
+        async function refresh_visual(data) {
 
+    // let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
+    //     .then(function (response) {
+    //         return response.data;
+    //     });
+
+    let salary_api = data;
     let salaryall = [];
     let predicts = [];
 
@@ -72,34 +90,58 @@ Let's goooooooo
                     <label class="font1">Drag and Drop your file</label>
                     <img src="{% static 'download.jpg' %}" />
                 </div>
-                <div class="dragbg2">
-                    <label class="font1">Search from devices</label>
-                    <button onclick="console.log('Upload Dataset')">Upload</button>
-                </div>
-            </div>
-            <div class = "error">
-                <img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />
-                <p>You do not have a file yet</p>
-            </div>
-        </div>
 
+                <div class="dragbg2">
+                    <div class="d-grid gap-4 col-4 mx-auto">
+                        <div class="col">
+                            <div class="row">
+                                <p class="fs-2">Upload Your Dataset</p>
+                            </div>
+                            <div class="row">
+                                <label for="fileInput" class="btn btn-primary btn-sm">
+                                    <input type="file" id="fileInput" name="file" accept=".csv, .json" style="display: none;">
+                                    Choose File
+                                </label>
+                                <span id="fileLabel"><img class="sketch-annotation" src="https://c.animaapp.com/lvm8L3gq/img/sketch-annotation-element-brush-pen-illustrations-exclamation-ma.png" />No file chosen</span>
+                            </div>
+                            <div class="row"></div>
+                            <button type="submit" class="btn btn-success" onclick="fetch_data()">Upload</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    const fileInput = document.getElementById("fileInput");
+                    const fileLabel = document.getElementById("fileLabel");
+                
+                    fileInput.addEventListener("change", () => {
+                        if (fileInput.files.length > 0) {
+                            fileLabel.textContent = fileInput.files[0].name;
+                        } else {
+                            fileLabel.textContent = "No file chosen";
+                        }
+                    });
+                </script>                
+                
+            </div>
+            
         <div class="container-fluid index-context">
             <div class="web-topic">
                 <div class="process-num">2
                 </div>
                 <label>Choose your visualizing method</label>
             </div>
-            <div class="choices">
+            <div class="choices" onclick="refresh_visual()">
                 <div class="subchoice">
                     <img class="bar-chart" src="{% static 'bar-chart-01.png' %}" />
                     <label>Histogram</label> 
                     
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'bar-chart-02.png' %}" />
                     <label>Horizontal Histogram</label>
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
                     <label>Pie Chart</label>
                 </div>  
@@ -107,11 +149,11 @@ Let's goooooooo
                     <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
                     <label>Line Chart</label>
                 </div>  
-                <div class="subchoice">
+                <div class="subchoice" onclick="refresh_visual()">
                     <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
                     <label>Dot Chart</label>
                 </div>  
-                    <div class="subchoice">
+                    <div class="subchoice" onclick="refresh_visual()">
                     <img class="logistic" src="{% static 'logistic.png' %}" />
                     <label>Logistic Regression</label>
                 </div>  
@@ -119,6 +161,7 @@ Let's goooooooo
             <div class="web-topic">
                 <div class="desktop-homepage">
                     <div class="fillfield" id = "visual">
+                      <!-- D3 Visualization is HERE -->
                     </div>
                 </div>
             </div>
@@ -136,7 +179,7 @@ Let's goooooooo
                 </div>
                 <button onClick="console.log('Download Dataset')">Download your model</button>
             </div>
-                    
+                
             </div>
         </div>
     </div>
