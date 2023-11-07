@@ -61,12 +61,14 @@ a {
   align-items: center;
   justify-content: center;
   padding: 2em;
+  width: 25%;
   height: auto;
+  object-fit: contain;
   background: #43888F;
   border-radius: 0em 2em 2em 0em;
 }
 
-.dragbg2 button{
+.dragbg2 input#fileInput::file-selector-button{
   border-radius: 21.5px;
   background: #DEF0F2;
   border-width: 0px;
