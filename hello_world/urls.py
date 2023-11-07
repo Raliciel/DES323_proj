@@ -28,12 +28,12 @@ urlpatterns = [
 
     # DATABASE VIEWS
     path("setting", database_views.database_item_list_all),
-    path("setting", database_views.database_item_edit),
     path("database/name", database_views.database_all_item),
     path("home", core_views.home),
     path("import/csv", core_views.import_data_csv),
     path("database/list_item/all", database_views.database_item_list_all),
-
+    path("database/name/edit/<id>", database_views.database_item_edit),
+    path("database/name/del/<id>", database_views.data_sci_item_delete),
     # CORE VIEWS
     path("", core_views.index),
     path("home", core_views.home),
@@ -41,8 +41,8 @@ urlpatterns = [
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
     path("login", core_views.login),
-
-    
+    path("database/log", database_views.database_login_add),
+    path("userinfo", database_views.user_name),
 ]
 
 if settings.DEBUG:
