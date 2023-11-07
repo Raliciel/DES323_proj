@@ -70,9 +70,6 @@ def call_request_externel_api(request):
     return JsonResponse(response.json())
 
 
-from django.http import JsonResponse
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
 
 def classification(request):
     # Assuming 'position' is a categorical variable you want to predict

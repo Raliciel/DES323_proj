@@ -23,7 +23,7 @@ Main
     </script>
     <script>
         function fetch_data() {
-            fetch('https://fluffy-disco-5r6x9p45rw9h4wr4-8000.app.github.dev/visualize/classification')
+            fetch('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
             .then(response=> response.json())
             .then(data=>{
                 let weather_div = document.getElementById('weathers');
@@ -41,10 +41,10 @@ Main
     <script>
         async function refresh_visual(data) {
 
-    // let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
-    //     .then(function (response) {
-    //         return response.data;
-    //     });
+     let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
+         .then(function (response) {
+             return response.data;
+        });
 
     // let salary_api = data;
     let salaryall = [];
