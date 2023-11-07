@@ -29,7 +29,7 @@ Main
                 let weather_div = document.getElementById('weathers');
                 weather_div.innerHTML = JSON.stringify(data);
                 // create visualization right after cuz we got no choice now
-                refresh_visual(data)
+                refresh_visual()
             })
             .catch(error =>{
                 console.error("Error Fetching",error);
@@ -46,7 +46,7 @@ Main
     //         return response.data;
     //     });
 
-    let salary_api = data;
+    // let salary_api = data;
     let salaryall = [];
     let predicts = [];
 
