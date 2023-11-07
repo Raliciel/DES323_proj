@@ -30,17 +30,17 @@ urlpatterns = [
     path("setting", database_views.database_item_list_all),
     # path("setting/<id>",database_views.database_item_of_user),
     path("database/allitem", database_views.database_all_item),
-    # CORE VIEWS
-    path("", core_views.index),
     path("setting", database_views.database_item_edit),
     path("database/name", database_views.database_all_item),
+    path("database/list_item/all", database_views.database_item_list_all),
+
+    # CORE VIEWS
+    path("", core_views.index),
     path("home", core_views.home),
     path('import/csv', core_views.import_data_csv, name='import_data_csv'),
-    path("database/list_item/all", database_views.database_item_list_all),
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
     path("login", core_views.login),
-    path("home", core_views.home),
     path("importcsv", core_views.import_data_csv), # import kaggle dataset to database before Classify/Visualize
     path("visualize/classification", core_views.classification), # (3) Create prediction model
     #path("visualize/d3viz", core_views.visualization),
