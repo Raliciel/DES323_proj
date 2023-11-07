@@ -115,8 +115,3 @@ def import_csv(request):
 def create_db(file_path):
     df = pd.read_csv(file_path, delimiter=',')
     list_of_csv = [list(row) for row in df.values]
-
-def visualization(request):
-    context = classification(request) # get classification Result
-    # D3 visualization views function
-    return render(request, "web/visualization.html", {'json_output': context})
