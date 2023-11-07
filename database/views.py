@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import *
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 # Create your views here.
@@ -19,8 +18,15 @@ def database_all_item(request):
     }
     return render(request, 'database/list_name.html', context= context_data)
 
+def user_name(request):
+    dataset_objs = userall.objects.all()
+    context_data = {
+        "filter_type":"All",
+        "datasets":dataset_objs
+    }
+    return render(request, 'web/userinfo.html', context= context_data)
 
-def database_item_add (request):
+def database_login_add(request):
     if request.method == "POST":
         form_data = request.POST
         new_item = userall(
@@ -28,25 +34,26 @@ def database_item_add (request):
             last_name = form_data[ 'last_name' ],
             account = form_data[ 'account' ],
             email = form_data[ 'email' ],
-            password = form_data[ 'password' ],
+            password = form_data[ 'password' ]
+
         )
         try:
             new_item. save()
         except:
             return HttpResponse ("ERROR!" )
-        return redirect ('/data_sci/list_item/all' )
+        return redirect ('/home')
     context_data = {
         'item_id' : "New",
         'form_data' :{
-        'first_name' :"",
-        'last_name' :"",
-        'account' :"",
-        'email' :"",
-        'password' :"",
+           'first_name':"",
+           'last_name':"",
+           'account':"",
+           'email':"",
+           'password':"",
 
-        }
-    }    
-    return render(request, 'data_sci/form.html' , context= context_data)
+            }
+    }
+    return render(request, 'web/login.html' , context= context_data)
 
 
 def database_item_edit(request, id):
@@ -55,7 +62,10 @@ def database_item_edit(request, id):
     except:
         return HttpResponse("ID Not found")
     if request.method == "POST":
+        
         form_data = request.POST
+
+        
         item.first_name = form_data['first_name']
         item.last_name = form_data['last_name']
         item.account = form_data['account']
@@ -63,9 +73,10 @@ def database_item_edit(request, id):
         item.password = form_data['password']
         try:
             item.save()
+            
         except:
             return HttpResponse("ERROR!")
-        return redirect('/database/name')
+        return redirect('/setting')
     context_data = {
         'item_id': id,
         'form_data':{
@@ -76,8 +87,11 @@ def database_item_edit(request, id):
             'password':item.password,
 
     }
+    
 }
+    print(database_item_edit)
     return render(request, 'web/settings.html', context= context_data)
+
 
 
 def data_sci_item_delete(request, id):
@@ -85,4 +99,4 @@ def data_sci_item_delete(request, id):
     if len(dataset_objs) <= 0:
         return HttpResponse("ID Not found")
     dataset_objs.delete()
-    return redirect('/web/settings.html')
+    return redirect('/login')
