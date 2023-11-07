@@ -1,0 +1,33 @@
+{% extends 'web/layout.html' %}
+{% load static %}
+
+{% block title %}
+D3 Visualization
+{% endblock %}
+
+{% block content %}
+<div id = "visualization"> </div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+
+<button onclick="refresh_visual()">Refresh Visualization</button>
+<script>
+async function refresh_visual()
+{
+    // get data
+    
+    // prepare data memory
+    // loop assign foreach & push
+
+    const plot = Plot.plot({
+        marks:[
+            //Plot
+            ]
+        })
+    const div = document.getElementById('visualization');
+    div.append(plot);
+}
+
+refresh_visual();
+</script>
+{% endblock %}

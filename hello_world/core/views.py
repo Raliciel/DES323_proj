@@ -11,10 +11,6 @@ from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
-
-
-
-
 def index(request):
     context = {
         "title": "Django example",
@@ -27,7 +23,6 @@ def setting(request):
         "title": "Setting Example",
     }
     return render(request, "web/settings.html",context)
-
 
 def home(request):
     context = {
@@ -45,6 +40,7 @@ def import_data_csv(request):
     data_sets = df[["Employee_Name", "EmpID", "Salary", "Position", "State", "Sex"]]
     success=[]
     errors=[]
+    # (2) import CSV from kaggle to database
     for index, row in data_sets.iterrows():
         instance = HR_description(
             employee_name = row['Employee_Name'],
@@ -61,17 +57,14 @@ def import_data_csv(request):
             errors.append(index)
     return JsonResponse({"success_indexes":success, "error_indexes":errors})
 
-
+# (3)  Call external api
 def call_request_externel_api(request):
     api_url="https://api.open-meteo.com/v1/forecast?latitude=14.0135&longitude=100.5305&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=Asia%2FBangkok&start_date=2023-10-18&end_date=2023-10-25"
     response=requests.get(api_url)
     print(response.json())
     return JsonResponse(response.json())
 
-
-from django.http import JsonResponse
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+# (3) Create Prediction Model
 
 def classification(request):
     # Assuming 'position' is a categorical variable you want to predict
@@ -99,12 +92,17 @@ def classification(request):
     }
     return JsonResponse(json_output)
 
-def import_csv(request):
-    if request.METHOD == "POST":
-        file = request.FILES['file']
-        obj = File.objects.create(file = file)
-    return render(request , 'main.html')
+# def import_csv(request): DUPLICATED?
+#     if request.METHOD == "POST":
+#         file = request.FILES['file']
+#         obj = File.objects.create(file = file)
+#     return render(request , 'main.html')
 
 def create_db(file_path):
     df = pd.read_csv(file_path, delimiter=',')
     print (df)
+
+def visualization(request):
+    context = classification(request) # get classification Result
+    # D3 visualization views function
+    return render(request, "web/visualization.html", {'json_output': context})

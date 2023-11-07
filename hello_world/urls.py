@@ -20,23 +20,30 @@ from django.conf.urls.static import static
 
 from hello_world.core import views as core_views
 from database import views as database_views
+
 urlpatterns = [
-    path("", core_views.index),
+    # ADMIN & MISC
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
-    path("setting", database_views.database_item_list_all),
-    # path("setting", database_views.database_item_edit),
-    path("database/name", database_views.database_all_item),
-    path("home", core_views.home),
-    path("import/csv", core_views.import_data_csv), #import error
-    path("database/list_item/all", database_views.database_item_list_all),
-    path("example/external_api", core_views.call_request_externel_api),
-    path("visualize/classification", core_views.classification),
-    path("login", core_views.login),
-    path("importcsv", core_views.import_csv)
 
+    # DATABASE VIEWS
+    path("setting", database_views.database_item_list_all),
+    path("database/name", database_views.database_all_item),
+    
+    # CORE VIEWS
+    path("", core_views.index),
+    path("login", core_views.login),
+    path("home", core_views.home),
+    path("importcsv", core_views.import_data_csv), # import kaggle dataset to database before Classify/Visualize
+    path("visualize/classification", core_views.classification), # (3) Create prediction model
+    path("visualize/d3viz", core_views.visualization),
+    # path("setting", database_views.database_item_edit), duplicated idk?
+    # path("importcsv", core_views.import_csv), duplicated?
+    # path("database/list_item/all", database_views.database_item_list_all), same as setting
+    path("example/external_api", core_views.call_request_externel_api),  # (3) Call External API
     
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
