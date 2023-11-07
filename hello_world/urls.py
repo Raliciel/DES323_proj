@@ -30,8 +30,6 @@ urlpatterns = [
     path("setting", database_views.database_item_list_all),
     # path("setting/<id>",database_views.database_item_of_user),
     path("database/allitem", database_views.database_all_item),
-    
-    
     # CORE VIEWS
     path("", core_views.index),
     path("setting", database_views.database_item_edit),
@@ -45,7 +43,7 @@ urlpatterns = [
     path("home", core_views.home),
     path("importcsv", core_views.import_data_csv), # import kaggle dataset to database before Classify/Visualize
     path("visualize/classification", core_views.classification), # (3) Create prediction model
-    path("visualize/d3viz", core_views.visualization),
+    #path("visualize/d3viz", core_views.visualization),
     # path("setting", database_views.database_item_edit), duplicated idk?
     # path("importcsv", core_views.import_csv), duplicated?
     # path("database/list_item/all", database_views.database_item_list_all), same as setting
