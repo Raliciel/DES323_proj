@@ -34,16 +34,27 @@ urlpatterns = [
     path("database/list_item/all", database_views.database_item_list_all),
     path("database/name/edit/<id>", database_views.database_item_edit),
     path("database/name/del/<id>", database_views.data_sci_item_delete),
+    path("api/movie", database_views.api_data),
+    path("test", core_views.classification),
+    path("data", core_views.import_data),
     # CORE VIEWS
     path("", core_views.index),
     path("home", core_views.home),
     path('import/csv', core_views.import_data_csv, name='import_data_csv'),
     path("example/external_api", core_views.call_request_externel_api),
     path("visualize/classification", core_views.classification),
-    path("login", core_views.login),
+    path("login", database_views.database_login_add),
     path("importcsv", core_views.import_csv),
-    path("database/log", database_views.database_login_add),
     path("userinfo", database_views.user_name),
+    path('signup', database_views.signup, name="signup"),
+    path('signin', database_views.signin, name="signin"),
+    path('signout', database_views.signout, name="signout"),
+    path('horizontalhistogram', core_views.horizon),
+    path('map', core_views.mapchart),
+    path('bubblechart', core_views.bubblechart),
+    path('boxchart', core_views.boxchart),
+
+
 ]
 
 if settings.DEBUG:

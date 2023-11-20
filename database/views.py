@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+import requests
 # Create your views here.
 def database_item_list_all(request):
     dataset_objs = settingtool.objects.all()
@@ -39,7 +44,7 @@ def database_login_add(request):
 
         )
         try:
-            new_item. save()
+            new_item.save()
         except:
             return HttpResponse ("ERROR!" )
         return redirect ('/home')
@@ -56,8 +61,48 @@ def database_login_add(request):
     }
     return render(request, 'web/login.html' , context= context_data)
 
+def signup(request):
+    if request.method == "POST":
+        fname = request.POST['first_name']
+        lname = request.POST['last_name']
+        user = request.POST['account']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        myuser = User.objects.create_user(user, password)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.save()
+
+        messages.success(request, "Your account has been successfully created.")
+
+
+        return redirect('/home')
+    return render(request, 'web/login.html')
+
+
+def signin(request):
+
+    if request.method == 'POST':
+        username = request.POST['account']
+        password = request.POST['password']
+
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            fname = user.first_name
+            return render(request, "web/signin.html", {'fname': fname})
+
+        else:
+            messages.error(request, "Bad Credentials")
+            return redirect('/home')
+
+    return render(request, 'web/signin.html')
 
 def database_item_edit(request, id):
+
     try:
         item = userall.objects.get(id = id)
     except:
@@ -101,3 +146,17 @@ def data_sci_item_delete(request, id):
         return HttpResponse("ID Not found")
     dataset_objs.delete()
     return redirect('/login')
+
+
+def signout(request):
+    logout(request)
+    messages.success(request, "Logout")
+    return redirect('/signin')
+
+
+
+def api_data(request):
+    api_url="https://api.themoviedb.org/3/search/movie?api_key=5395578a0f7c6ad459be7ddae34b26c7&query=Harry Potter"
+    response= requests.get(api_url)
+    print(response.json())
+    return JsonResponse(response.json())

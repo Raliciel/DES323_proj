@@ -16,9 +16,3 @@ To run this application:
 ```python
 python manage.py runserver
 ```
-Viztastic
-Nathitiek Rochananil
-Phuritat Chakreeyarat
-Chusana rompo
-Pimpika Hongsawadee
-Khang Nguyen

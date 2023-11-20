@@ -38,6 +38,18 @@
     background-color: #FAEEC8;
 }
 
+.index-forgraph{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-arrow {
+  font-size: 20px;
+  color: #2222; /* Change the color to your preference */
+  cursor: pointer;
+}
 
 
 #home-text{
@@ -151,3 +163,4 @@
     display: flex;
     justify-content: space-around;
   }
+

@@ -21,62 +21,19 @@ Main
         // var data = {{ json_output|safe }};
     }
     </script>
-    <script>
-        function fetch_data() {
-            fetch('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
-            .then(response=> response.json())
-            .then(data=>{
-                let weather_div = document.getElementById('weathers');
-                weather_div.innerHTML = JSON.stringify(data);
-                // create visualization right after cuz we got no choice now
-                refresh_visual()
-            })
-            .catch(error =>{
-                console.error("Error Fetching",error);
-            })
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
-    <script>
-        async function refresh_visual(data) {
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 
-     let salary_api = await axios.get('https://potential-memory-v6qrxq54pxpc6gwp-8000.app.github.dev/visualize/classification')
-         .then(function (response) {
-             return response.data;
-        });
-
-    // let salary_api = data;
-    let salaryall = [];
-    let predicts = [];
-
-    salary_api['salaries'].forEach((data, index) => {
-        let real_obj = {
-            "salaries": data,
-            "position": salary_api['position'][index]
-        }
-        let pred_obj = {
-            "salaries": data,
-            "position": salary_api['position'][index]
-        }
-        salaryall.push(real_obj);
-        predicts.push(pred_obj);
-    });
-
-    const plot = Plot.plot({
-        marks: [
-            Plot.dotY(salaryall, { x: "salaries", y: "position", tip: "x", stroke: "red" }),
-            Plot.dotY(predicts, { x: "salaries", y: "position", tip: "x", stroke: "blue" }),
-        ]
-    })
     
-    const div = document.getElementById('visual');
-    div.append(plot);
-}
+    <script type="text/javascript" src="{% static 'graphjs/horizontal.js'%}"></script>
+    <script type="text/javascript" src="{% static 'graphjs/histogram.js'%}"></script>
+    <script type="text/javascript" src="{% static 'graphjs/piechart.js'%}"></script>
+    <script type="text/javascript" src="{% static 'graphjs/linechart.js'%}"></script>
+    <script type="text/javascript" src="{% static 'graphjs/dotchart.js'%}"></script>
 
-        
-        refresh_visual();
-    </script>
+
+
     <div class="container-fluid index-body">
         <div class="container-fluid index-context">
             <div class="web-topic">
@@ -93,7 +50,10 @@ Main
 
                 <div class="dragbg2">
                     <label class="font1">Upload Your Dataset</label>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <input class= "uploadFile" id="fileInput" name="file" accept=".csv, .json" type="file">
+                </form>
                 </div>
                 
                 <script>
@@ -117,37 +77,35 @@ Main
                 </div>
                 <label>Choose your visualizing method</label>
             </div>
-            <div class="choices" onclick="refresh_visual()">
-                <div class="subchoice">
+            <div class="choices">
+                <div class="subchoice" onclick="drawVerticalHistogram()" >
                     <img class="bar-chart" src="{% static 'bar-chart-01.png' %}" />
-                    <label>Histogram</label> 
-                    
+                    <label>Histogram</label>  
                 </div>  
-                <div class="subchoice" onclick="refresh_visual()">
+                <div class="subchoice" onclick="horizontalhis()">
                     <img class="bar-chart" src="{% static 'bar-chart-02.png' %}" />
                     <label>Horizontal Histogram</label>
                 </div>  
-                <div class="subchoice" onclick="refresh_visual()">
+                <div class="subchoice" onclick="PieChart()">
                     <img class="bar-chart" src="{% static 'pie-chart-01.png' %}" />
                     <label>Pie Chart</label>
                 </div>  
-                <div class="subchoice" onclick="refresh_visual()">
+                <div class="subchoice" onclick="lineChart()">
                     <img class="bar-chart" src="{% static 'graph-increase.png' %}" />
                     <label>Line Chart</label>
                 </div>  
-                <div class="subchoice" onclick="refresh_visual()">
+                <div class="subchoice" onclick="dotChart()">
                     <img class="bar-chart" src="{% static 'dotgraph.png' %}" />
                     <label>Dot Chart</label>
                 </div>  
-                    <div class="subchoice" onclick="refresh_visual()">
-                    <img class="logistic" src="{% static 'logistic.png' %}" />
-                    <label>Logistic Regression</label>
-                </div>  
+        
             </div>
             <div class="web-topic">
                 <div class="desktop-homepage">
                     <div class="fillfield" id = "visual">
                       <!-- D3 Visualization is HERE -->
+                      
+                      
                     </div>
                 </div>
             </div>
@@ -160,8 +118,10 @@ Main
                 <label>Statistic Summary</label>
             </div>
             <div class="result">
-                <div class="fillfield" id = "weathers">
-                    <h1>You do not have a file yet</h1>
+                <div class="fillfield">
+                    <div id="stat" class="fillfield">
+                    <h1>You don't have a file yet</h1>
+                </div>
                 </div>
                 <button onClick="console.log('Download Dataset')">Download your model</button>
             </div>

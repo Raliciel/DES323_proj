@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.core.files.storage import FileSystemStorage
 
 import pandas as pd
 from database.models import HR_description
@@ -9,10 +10,9 @@ import numpy as np
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from database.models import HR_description
 
 from .forms import UploadFileForm
-
-
 
 def index(request):
     context = {
@@ -37,6 +37,34 @@ def home(request):
 def login(request):
     context = {"title": "Login"}
     return render(request, "web/login.html",context)
+
+def horizon(request):
+    context = {
+        "title": "Django example",
+    }
+    return render(request, "web/contentinfo/horizontalhistogram.html", context)
+
+
+def mapchart(request):
+    context = {
+        "title": "Django example",
+    }
+    return render(request, "web/contentinfo/mapchart.html", context)
+
+def bubblechart(request):
+    context = {
+        "title": "Django example",
+    }
+    return render(request, "web/contentinfo/bubblechart.html", context)
+
+def boxchart(request):
+    context = {
+        "title": "Django example",
+    }
+    return render(request, "web/contentinfo/boxchart.html", context)
+
+
+
 
 def import_data_csv(request):
     if request.method == 'POST':
@@ -69,7 +97,27 @@ def call_request_externel_api(request):
     print(response.json())
     return JsonResponse(response.json())
 
-
+def import_data(request):
+    csv_url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvTTOhbRW72EatmKjQnmwYhHjVoK3lrkF_tvFxMMKjqWWJYGgrHKV4fvjfB6NTaqAkRaXiLcfcf8Hr/pub?output=csv"
+    df = pd.read_csv(csv_url)
+    data_sets = df[["Employee_Name", "EmpID", "Salary", "Position", "State", "Sex"]]
+    success = []
+    errors = []
+    for index, row in data_sets.iterrows():
+        instance = HR_description(
+            employee_name = row['Employee_Name'],
+            empID = int(row['EmpID']),
+            Salary = int(row['Salary']),
+            position = row['Position'],
+            state = row['State'],
+            sex = row['Sex'],
+        )
+        try:
+            instance.save()
+            success.append(index)
+        except:
+            errors.append(index)
+    return JsonResponse({"success_indexs":success, "error_indexs":errors})
 
 def classification(request):
     # Assuming 'position' is a categorical variable you want to predict
@@ -101,8 +149,20 @@ def import_csv(request):
     if request.METHOD == "POST":
         file = request.FILES['file']
         obj = File.objects.create(file = file)
-    return render(request , 'main.html')
+    return render(request , 'index.html')
 
 def create_db(file_path):
     df = pd.read_csv(file_path, delimiter=',')
     list_of_csv = [list(row) for row in df.values]
+
+def chart_data(request):
+    data = []
+    with open("data.csv") as csvfile:
+        csv_reader = csv.reader(csvfile, delimiter=',')
+        for row in csv_reader:
+            data.append(row)
+
+    return render(request, 'index.html',
+                  {'data': data})
+
+
