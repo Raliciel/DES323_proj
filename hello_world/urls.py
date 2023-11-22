@@ -33,10 +33,13 @@ urlpatterns = [
     path("import/csv", core_views.import_data_csv),
     path("database/list_item/all", database_views.database_item_list_all),
     path("database/name/edit/<id>", database_views.database_item_edit),
-    path("database/name/del/<id>", database_views.data_sci_item_delete),
+    path("database/name/del/<id>", database_views.item_delete),
     path("api/movie", database_views.api_data),
     path("test", core_views.classification),
     path("data", core_views.import_data),
+    path('api/json', database_views.api_register),
+
+
     # CORE VIEWS
     path("", core_views.index),
     path("home", core_views.home),
@@ -53,8 +56,7 @@ urlpatterns = [
     path('map', core_views.mapchart),
     path('bubblechart', core_views.bubblechart),
     path('boxchart', core_views.boxchart),
-
-
+    path('finish', core_views.finish),
 ]
 
 if settings.DEBUG:

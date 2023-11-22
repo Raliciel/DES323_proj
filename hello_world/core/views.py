@@ -34,6 +34,12 @@ def home(request):
     }
     return render(request, "web/home.html",context)
 
+def finish(request):
+    context = {
+        "title": "Home Example",
+    }
+    return render(request, "web/finish.html",context)
+
 def login(request):
     context = {"title": "Login"}
     return render(request, "web/login.html",context)
